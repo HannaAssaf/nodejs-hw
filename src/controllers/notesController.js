@@ -1,4 +1,4 @@
-import { TAGS } from '../../constants/tags.js';
+import { TAGS } from '../constants/tags.js';
 import { Note } from '../models/note.js';
 import createHttpError from 'http-errors';
 
