@@ -8,8 +8,6 @@ export const getAllNotesSchema = {
     perPage: Joi.number().integer().min(5).max(20).default(10),
     tag: Joi.string().valid(...TAGS),
     search: Joi.string().trim().allow(''),
-    sortBy: Joi.string().valid('tag', 'createdAt', 'updatedAt').default('_id'),
-    sortOrder: Joi.string().valid('asc', 'desc').default('asc'),
   }),
 };
 
@@ -29,7 +27,7 @@ export const createNoteSchema = {
     content: Joi.string().allow(''),
     tag: Joi.string()
       .valid(...TAGS)
-      .required(),
+      .optional(),
   }),
 };
 
