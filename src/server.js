@@ -3,6 +3,7 @@ import cors from 'cors';
 import 'dotenv/config';
 import { errors } from 'celebrate';
 import { connectMongoDB } from './db/connectMongoDB.js';
+import authRoutes from './routes/authRoutes.js';
 import notesRoutes from './routes/notesRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
@@ -20,6 +21,7 @@ app.use(
 );
 app.use(cors());
 
+app.use(authRoutes);
 app.use(notesRoutes);
 
 app.use(notFoundHandler);
