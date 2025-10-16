@@ -8,6 +8,7 @@ import notesRoutes from './routes/notesRoutes.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = process.env.PORT ?? 3030;
@@ -20,6 +21,7 @@ app.use(
   }),
 );
 app.use(cors());
+app.use(cookieParser());
 
 app.use(authRoutes);
 app.use(notesRoutes);
