@@ -11,7 +11,7 @@ import { logger } from './middleware/logger.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
-const PORT = process.env.PORT ?? 3030;
+const PORT = process.env.PORT ?? 3000;
 
 app.use(logger);
 app.use(
