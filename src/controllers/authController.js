@@ -92,7 +92,9 @@ export const logoutUser = async (req, res) => {
 export const requestResetEmail = async (req, res) => {
   const { email } = req.body;
 
-  const user = await User.findOne({ email });
+  if (email) {
+    await User.findOne({ email });
+  }
 
   res.status(200).json({
     message: 'Password reset email sent successfully',
