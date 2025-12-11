@@ -2,7 +2,7 @@
 
  # 📦 Node.js Projects
 
-###  A full set of backend practice tasks: CLI tools, REST API, MongoDB, authentication, file uploads, email verification.
+###  A full set of backend practice tasks: REST API, MongoDB, authentication, file uploads, email verification.
 
 <img src="https://img.shields.io/badge/runtime-Node.js-339933?logo=node.js&logoColor=white" />
 <img src="https://img.shields.io/badge/framework-Express-black" />
@@ -25,7 +25,6 @@ This repository contains a full series of Node.js backend homework projects comp
 
 It demonstrates practical backend development skills including:
 
-- CLI applications  
 - working with **fs/promises**  
 - creating a **REST API** using Express  
 - connecting **MongoDB + Mongoose**  
@@ -35,7 +34,7 @@ It demonstrates practical backend development skills including:
 - validation (Joi)  
 - pagination, filtering, route protection  
 
-These tasks reflect real-world backend foundations for junior Node.js positions.
+These tasks reflect real-world backend foundations for Node.js positions.
 
 ---
 
@@ -93,53 +92,45 @@ These tasks reflect real-world backend foundations for junior Node.js positions.
 - **JWT + bcrypt**
 - **Joi validation**
 - **Multer**
-- **Nodemailer / SendGrid**
-- **Jimp**
-- **Morgan**
+- **Nodemailer**
 - **dotenv**
 
 ---
 
 ## 🌐 API Endpoints Overview
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| **GET** | `/api/contacts` | Get all contacts (supports `page`, `limit`, `favorite`) |
-| **GET** | `/api/contacts/:id` | Get contact by ID |
-| **POST** | `/api/contacts` | Create new contact (Joi validation) |
-| **PUT** | `/api/contacts/:id` | Replace entire contact |
-| **PATCH** | `/api/contacts/:id` | Partially update contact |
-| **PATCH** | `/api/contacts/:id/favorite` | Update only `favorite` field |
-| **DELETE** | `/api/contacts/:id` | Delete contact |
+### 🔐 Auth
+
+| Method | Endpoint                     | Description                          |
+|--------|------------------------------|--------------------------------------|
+| POST   | `/auth/register`             | Register a new user                  |
+| POST   | `/auth/login`                | Log in and create a user session     |
+| POST   | `/auth/refresh`              | Refresh user session / tokens        |
+| POST   | `/auth/logout`               | Log out and invalidate session       |
+| POST   | `/auth/request-reset-email`  | Request password reset email         |
+| POST   | `/auth/reset-password`       | Reset password using reset token     |
 
 ---
 
-### 🔐 Authentication
+### 📝 Notes (authenticated)
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| **POST** | `/api/users/register` | Register new user (default avatar & subscription) |
-| **POST** | `/api/users/login` | Log in & receive JWT |
-| **GET** | `/api/users/current` | Get current user (requires JWT) |
-| **POST** | `/api/users/logout` | Log out user |
-| **PATCH** | `/api/users/subscription` | Update subscription (`starter`, `pro`, `business`) |
+All `/notes` endpoints require authentication (`authenticate` middleware).
 
----
-
-### 📧 Email Verification
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| **GET** | `/api/users/verify/:verificationToken` | Confirm email |
-| **POST** | `/api/users/verify` | Resend verification email |
+| Method | Endpoint             | Description                    |
+|--------|----------------------|--------------------------------|
+| GET    | `/notes`             | Get all notes (with filters)   |
+| GET    | `/notes/:noteId`     | Get a single note by ID        |
+| POST   | `/notes`             | Create a new note              |
+| PATCH  | `/notes/:noteId`     | Update an existing note        |
+| DELETE | `/notes/:noteId`     | Delete a note by ID            |
 
 ---
 
-### 🖼 Avatars
+### 🧑‍💼 User
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| **PATCH** | `/api/users/avatars` | Upload & update user avatar (Multer + Jimp) |
+| Method | Endpoint              | Description                                   |
+|--------|-----------------------|-----------------------------------------------|
+| PATCH  | `/users/me/avatar`    | Upload/update user avatar (auth + Multer)    |
 
 ---
 
