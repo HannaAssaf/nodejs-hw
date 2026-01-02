@@ -12,7 +12,7 @@ const swaggerOptions = {
 
     servers: [
       {
-        url: 'https://nodejs-hw-05-ru6h.onrender.com/',
+        url: process.env.PUBLIC_URL || 'http://localhost:3000',
       },
     ],
 
