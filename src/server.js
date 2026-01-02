@@ -23,7 +23,7 @@ app.use(
     limit: '100kb',
   }),
 );
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(cors());
 app.use(cookieParser());
 
