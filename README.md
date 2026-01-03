@@ -12,9 +12,10 @@
 
 ---
 
-### 🔗 **Live Demo**
 
-https://nodejs-hw-05-ru6h.onrender.com
+### 🔗 **Swagger documentation**
+
+https://nodejs-hw-05-ru6h.onrender.com/docs/
 
 </div>
 
