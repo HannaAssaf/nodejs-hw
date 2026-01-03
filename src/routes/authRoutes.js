@@ -21,7 +21,7 @@ const router = Router();
  * @openapi
  * /api/auth/register:
  *   post:
- *     tags: [Auth Routes]
+ *     tags: [Auth]
  *     summary: Register user
  *     requestBody:
  *       required: true
@@ -55,8 +55,7 @@ router.post('/auth/register', celebrate(registerUserSchema), registerUser);
  * @openapi
  * /api/auth/login:
  *   post:
- *     tags:
- *       - Auth Routes
+ *     tags: [Auth]
  *     summary: Login user
  *     requestBody:
  *       required: true
@@ -86,7 +85,7 @@ router.post('/auth/login', celebrate(loginUserSchema), loginUser);
  * @openapi
  * /api/auth/refresh:
  *   post:
- *     tags: [Auth Routes]
+ *     tags: [Auth]
  *     summary: Refresh user session
  *     description: Typically uses refresh token (cookie or header depending on implementation).
  *     responses:
@@ -101,7 +100,7 @@ router.post('/auth/refresh', refreshUserSession);
  * @openapi
  * /api/auth/logout:
  *   post:
- *     tags: [Auth Routes]
+ *     tags: [Auth]
  *     summary: Logout user
  *     responses:
  *       204:
@@ -115,7 +114,7 @@ router.post('/auth/logout', logoutUser);
  * @openapi
  * /api/auth/request-reset-email:
  *   post:
- *     tags: [Auth Routes]
+ *     tags: [Auth]
  *     summary: Request password reset email
  *     requestBody:
  *       required: true
@@ -144,7 +143,7 @@ router.post(
  * @openapi
  * /api/auth/reset-password:
  *   post:
- *     tags: [Auth Routes]
+ *     tags: [Auth]
  *     summary: Reset password
  *     requestBody:
  *       required: true
