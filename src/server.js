@@ -10,6 +10,8 @@ import { errorHandler } from './middleware/errorHandler.js';
 import { notFoundHandler } from './middleware/notFoundHandler.js';
 import { logger } from './middleware/logger.js';
 import cookieParser from 'cookie-parser';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from '../swagger.js';
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;
@@ -21,6 +23,7 @@ app.use(
     limit: '100kb',
   }),
 );
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(cors());
 app.use(cookieParser());
 
