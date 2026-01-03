@@ -9,12 +9,12 @@ import handlebars from 'handlebars';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
-export const registerUser = async (req, res, next) => {
+export const registerUser = async (req, res) => {
   const { email, password } = req.body;
 
   const existingUser = await User.findOne({ email });
   if (existingUser) {
-    return next(createHttpError(400, 'Email in use'));
+    throw createHttpError(400, 'Email in use');
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,16 +30,16 @@ export const registerUser = async (req, res, next) => {
   res.status(201).json(newUser);
 };
 
-export const loginUser = async (req, res, next) => {
+export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await User.findOne({ email });
   if (!user) {
-    return next(createHttpError(401, 'User not found'));
+    throw createHttpError(401, 'User not found');
   }
   const isValidPassword = await bcrypt.compare(password, user.password);
   if (!isValidPassword) {
-    return next(createHttpError(401, 'Invalid credentials'));
+    throw createHttpError(401, 'Invalid credentials');
   }
 
   await Session.deleteOne({ userId: user._id });
@@ -50,21 +50,21 @@ export const loginUser = async (req, res, next) => {
   res.status(200).json(user);
 };
 
-export const refreshUserSession = async (req, res, next) => {
+export const refreshUserSession = async (req, res) => {
   const session = await Session.findOne({
     _id: req.cookies.sessionId,
     refreshToken: req.cookies.refreshToken,
   });
 
   if (!session) {
-    return next(createHttpError(401, 'Session not found'));
+    throw createHttpError(401, 'Session not found');
   }
 
   const isSessionTokenExpired =
     new Date() > new Date(session.refreshTokenValidUntil);
 
   if (isSessionTokenExpired) {
-    return next(createHttpError(401, 'Session token expired'));
+    throw createHttpError(401, 'Session token expired');
   }
 
   await Session.deleteOne({
